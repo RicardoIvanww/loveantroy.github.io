@@ -1,0 +1,293 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #181818;
+  color: #ddd;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.top-section {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+.top-section h2 {
+  font-size: 2.8rem;
+  background: linear-gradient(45deg, #ff0080, #00ffff, #ff0080);
+  background-size: 300% 300%;
+  animation: rgb-glow 6s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+@keyframes rgb-glow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.top-section ul {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.4s ease;
+  opacity: 0;
+  margin-top: 0;
+  padding-left: 20px;
+}
+
+.top-section:hover ul {
+  max-height: 500px; 
+  opacity: 1;
+  margin-top: 15px;
+}
+
+.top-section ul li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1rem;
+  color: #bbb;
+}
+
+.top-section ul li:last-child {
+  border-bottom: none;
+}
+
+.compra-form {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 40px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  background: rgba(25, 25, 25, 0.6);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px #1e90ff33;
+  backdrop-filter: blur(10px);
+}
+
+.compra-form h3 {
+  background: linear-gradient(45deg, #ff0080, #00ffff, #ff0080);
+  background-size: 300% 300%;
+  animation: rgb-glow 6s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.compra-form form {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.compra-form input[type="text"],
+.compra-form input[type="number"] {
+  flex: 1 1 200px;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #393e46;
+  color: #eee;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.compra-form input[type="text"]:focus,
+.compra-form input[type="number"]:focus {
+  outline: none;
+  background: #4a505a;
+  box-shadow: 0 0 8px #407088;
+}
+
+.compra-form button {
+  padding: 10px 25px;
+  background: #665a649c;
+  border: none;
+  border-radius: 6px;
+  color: #ddd;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px #1e90ff55;
+}
+
+.compra-form button:hover {
+  background: #1e90ff;
+  box-shadow: 0 0 15px #1e90ff, 0 0 30px #1e90ff88;
+  cursor: pointer;
+}
+
+h2{
+  background: linear-gradient(45deg, #ff0080, #00ffff, #ff0080);
+  background-size: 300% 300%;
+  animation: rgb-glow 6s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+
+.botellas-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  padding: 0 10px;
+}
+
+
+.botella-card {
+  background: #222831;
+  border-radius: 12px;
+  padding: 15px;
+  color: #ccc;
+  box-shadow: 0 0 8px rgba(64, 112, 136, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.botella-card:hover {
+  box-shadow: 0 0 15px #aa3bb8;
+}
+
+.botella-card img {
+  width: 100%;
+  height: 180px;       
+  border-radius: 10px;
+  margin-bottom: 10px;
+  object-fit: cover;  
+}
+
+.nombre-botella {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #407088;
+  text-align: center;
+}
+
+.precio-botella {
+  color: #9f3bb8;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.botella-card button {
+  width: 100%; 
+  text-align: center;
+  padding: 10px 25px;
+  background: #665a649c;
+  border: none;
+  border-radius: 6px;
+  color: #ddd;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px #1e90ff55;
+}
+
+.botella-card button:hover {
+  background: #6eb4fa;
+  box-shadow: 0 0 15px #086bce, 0 0 30px #1e90ff88;
+  cursor: pointer;
+}
+
+a {
+   margin-top: 30px;
+  text-align: center;
+  color: #ecf0f5;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 10px 0;
+  width: 120px;
+  border-radius: 14px;
+  box-shadow:
+    0 0 15px rgba(120, 150, 180, 0.25);
+  transition: color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+a:hover {
+  background: #c83eeb;
+  box-shadow: 0 0 15px #1e90ff, 0 0 30px #1e90ff88;
+  cursor: pointer;
+}
+
+.corazones {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -3;
+}
+
+.heart {
+  position: absolute;
+  bottom: -20px;
+  width: 15px;
+  height: 15px;
+  background-color: #1e90ff;
+  transform: rotate(-45deg);
+  animation: floatHeart 10s infinite;
+  opacity: 0.07;
+  filter: blur(1px);
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #1e90ff;
+  border-radius: 50%;
+}
+
+.heart::before { top: -7.5px; left: 0; }
+.heart::after { left: 7.5px; top: 0; }
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) rotate(-45deg) scale(1);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateY(-800px) rotate(-45deg) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.heart:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
+.heart:nth-child(2) { left: 20%; animation-duration: 10s; animation-delay: 1s; }
+.heart:nth-child(3) { left: 30%; animation-duration: 12s; animation-delay: 2s; }
+.heart:nth-child(4) { left: 40%; animation-duration: 7s; animation-delay: 1.5s; }
+.heart:nth-child(5) { left: 50%; animation-duration: 9s; animation-delay: 2.5s; }
+.heart:nth-child(6) { left: 60%; animation-duration: 11s; animation-delay: 0.5s; }
+.heart:nth-child(7) { left: 70%; animation-duration: 10s; animation-delay: 1s; }
+.heart:nth-child(8) { left: 80%; animation-duration: 8s; animation-delay: 3s; }
+.heart:nth-child(9) { left: 90%; animation-duration: 13s; animation-delay: 0.2s; }
+.heart:nth-child(10){ left: 95%; animation-duration: 14s; animation-delay: 1.8s; }
+
