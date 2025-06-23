@@ -1,0 +1,120 @@
+<?php
+include("conexion.php");
+session_start();
+$mensaje = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['accion']) && $_POST['accion'] == "login") {
+        $correo = mysqli_real_escape_string($conexion, $_POST['correo']);
+        $contra = mysqli_real_escape_string($conexion, $_POST['contra']);
+
+        $query = "SELECT * FROM usuarios WHERE correo = '$correo'";
+        $result = mysqli_query($conexion, $query);
+
+        if ($row = mysqli_fetch_assoc($result)) {
+            if ($contra == $row['contra']) {
+                $_SESSION['correo'] = $correo;
+                $_SESSION['nombre'] = $row['nombre'];
+                header("Location: menu.php");
+                exit();
+            } else {
+                $mensaje = "Contraseña incorrecta";
+            }
+        } else {
+            $mensaje = "Correo no encontrado";
+        }
+
+    } elseif (isset($_POST['accion']) && $_POST['accion'] == "registro") {
+        $nombre = mysqli_real_escape_string($conexion, $_POST['nombre']);
+        $correo = mysqli_real_escape_string($conexion, $_POST['correo']);
+        $contra = mysqli_real_escape_string($conexion, $_POST['contra']);
+
+        $checkQuery = "SELECT id_usuario FROM usuarios WHERE correo = '$correo'";
+        $checkResult = mysqli_query($conexion, $checkQuery);
+
+        if (mysqli_num_rows($checkResult) > 0) {
+            $mensaje = "Ese correo ya está registrado, intenta con uno nuevo";
+        } else {
+            $query = "INSERT INTO usuarios (nombre, correo, contra) VALUES ('$nombre', '$correo', '$contra')";
+            if (mysqli_query($conexion, $query)) {
+                $mensaje = "Registro exitoso, ya puedes iniciar sesión";
+            } else {
+                $mensaje = "Error al registrar. Intenta de nuevo.";
+            }
+        }
+    }
+}
+?>
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Login / Registro</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="contenedortodo">
+    <div class="title">
+      <h1>Love Club 💖</h1>
+      <p>Inicia sesión o regístrate para continuar</p>
+      <br>
+    </div>
+
+    <div class="switch-buttons">
+      <button id="btnLogin" class="active">Iniciar Sesión</button>
+      <button id="btnRegistro">Registrarse</button>
+    </div>
+
+    <?php if ($mensaje != ""): ?>
+      <div class="mensaje"><?php echo htmlspecialchars($mensaje); ?></div>
+    <?php endif; ?>
+
+    <div class="form-container">
+      <form id="formLogin" class="form active" method="POST" autocomplete="off">
+        <input type="hidden" name="accion" value="login" />
+        <input type="email" name="correo" placeholder="Correo" required />
+        <input type="password" name="contra" placeholder="Contraseña" required />
+        <input type="submit" value="Iniciar Sesión" />
+      </form>
+
+      <form id="formRegistro" class="form" method="POST" autocomplete="off">
+        <input type="hidden" name="accion" value="registro" />
+        <input type="text" name="nombre" placeholder="Nombre" required />
+        <input type="email" name="correo" placeholder="Correo" required />
+        <input type="password" name="contra" placeholder="Contraseña" required />
+        <input type="submit" value="Registrarse" />
+      </form>
+    </div>
+  </div>
+
+  <div class="corazones">
+    <div class="heart"></div><div class="heart"></div><div class="heart"></div>
+    <div class="heart"></div><div class="heart"></div><div class="heart"></div>
+    <div class="heart"></div><div class="heart"></div><div class="heart"></div>
+    <div class="heart"></div>
+  </div>
+
+  <script>
+    const formLogin = document.getElementById("formLogin");
+    const formRegistro = document.getElementById("formRegistro");
+    const btnLogin = document.getElementById("btnLogin");
+    const btnRegistro = document.getElementById("btnRegistro");
+
+    btnLogin.addEventListener("click", () => {
+      formLogin.classList.add("active");
+      formRegistro.classList.remove("active");
+      btnLogin.classList.add("active");
+      btnRegistro.classList.remove("active");
+    });
+
+    btnRegistro.addEventListener("click", () => {
+      formRegistro.classList.add("active");
+      formLogin.classList.remove("active");
+      btnRegistro.classList.add("active");
+      btnLogin.classList.remove("active");
+    });
+  </script>
+</body>
+</html>
